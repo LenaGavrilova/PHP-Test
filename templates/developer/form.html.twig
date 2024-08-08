@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Developer Form{% endblock %}
+
+{% block content %}
+    <h2>{{ 'Create Developer' }}</h2>
+
+    {{ form_start(form) }}
+    {{ form_row(form.fullName, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.position, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.phoneNumber, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.project, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.birthday, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.skills, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.experienceYears, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.hireDate, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.salary, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.status, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.address, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(form.notes, {'attr': {'class': 'form-control'}}) }}
+    <button type="submit" class="btn btn-primary">{{ 'Create' }}</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('developer_list') }}" class="btn btn-secondary mt-2">Back to List</a>
+{% endblock %}

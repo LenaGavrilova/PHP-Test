@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Developer List{% endblock %}
+
+{% block content %}
+    <h2>Developers</h2>
+    <a href="{{ path('developer_form') }}" class="btn btn-primary mb-3">Create New Developer</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Position</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for developer in developers %}
+            <tr>
+                <td>{{ developer.id }}</td>
+                <td>{{ developer.fullName }}</td>
+                <td>{{ developer.position }}</td>
+                <td>{{ developer.email }}</td>
+                <td>{{ developer.status }}</td>
+                <td>
+                    {% if developer.status == 'fired' %}
+                        <a href="{{ path('developer_set_status', {'id': developer.id, 'status':'hired'}) }}" class="btn btn-success">Rehire</a>
+                    {% else %}
+                        {% if developer.status == 'hired' %}
+                            <a href="{{ path('developer_set_status', {'id': developer.id, 'status': 'on vacation'}) }}" class="btn btn-warning">Set On Vacation</a>
+                            <a href="{{ path('developer_set_status', {'id': developer.id, 'status': 'free'}) }}" class="btn btn-info">Set Free</a>
+                        {% elseif developer.status == 'on vacation' %}
+                            <a href="{{ path('developer_set_status', {'id': developer.id, 'status': 'hired'}) }}" class="btn btn-primary">Return From Vacation</a>
+                        {% elseif developer.status == 'free' %}
+                            <a href="{{ path('developer_set_status', {'id': developer.id, 'status': 'in project'}) }}" class="btn btn-primary">Assign To Project</a>
+                        {% elseif developer.status == 'In project' %}
+                            <a href="{{ path('developer_set_status', {'id': developer.id, 'status': 'free'}) }}" class="btn btn-info">Set Free</a>
+                        {% endif %}
+                        <a href="{{ path('developer_edit', {'id': developer.id}) }}" class="btn btn-warning btn-sm">Update</a>
+                        <a href="{{ path('fire_developer', {'id': developer.id}) }}" class="btn btn-danger btn-sm">Fire</a>
+                    {% endif %}
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No developers found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

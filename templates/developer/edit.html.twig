@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit developer{% endblock %}
+
+{% block content %}
+    <h2>Edit developer</h2>
+
+    {{ form_start(form) }}
+    {{ form_row(form.fullName) }}
+    {{ form_row(form.position) }}
+    {{ form_row(form.project) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.phoneNumber) }}
+    {{ form_row(form.birthday) }}
+    {{ form_row(form.skills) }}
+    {{ form_row(form.experienceYears) }}
+    {{ form_row(form.hireDate) }}
+    {{ form_row(form.address) }}
+    {{ form_row(form.salary) }}
+    {{ form_row(form.status) }}
+    {{ form_row(form.notes) }}
+    <button class="btn btn-primary">Save</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('developer_list') }}" class="btn btn-secondary mt-2">Back to list</a>
+{% endblock %}
